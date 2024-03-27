@@ -1,0 +1,8 @@
+{
+  "name": "美酒",
+  "desc": "这是描述",
+  "url": "D:/代码前端/vue秒杀/secKill/src/assets/美酒.png",
+  "shopNum": "10",
+  "shopPrice": 12,
+  "secKillTime": 12
+}
