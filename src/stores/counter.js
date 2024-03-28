@@ -1,12 +1,15 @@
-import { ref, computed } from 'vue'
-import { defineStore } from 'pinia'
+import { ref, computed } from "vue";
+import { defineStore } from "pinia";
 
-export const useCounterStore = defineStore('counter', () => {
-  const count = ref(0)
-  const doubleCount = computed(() => count.value * 2)
-  function increment() {
-    count.value++
+export const secKillTimeObj = defineStore(
+  "secTime",
+  () => {
+    const obj = reactive({});
+    const pnumber = computed(() => obj.value.pnumber);
+
+    return { obj, pnumber };
+  },
+  {
+    persist: true, // 持久化
   }
-
-  return { count, doubleCount, increment }
-})
+);
