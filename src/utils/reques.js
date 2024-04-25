@@ -1,8 +1,8 @@
 import axios from "axios";
-import router from "@/router";
+// import router from "@/router";
 import { ElMessage } from "element-plus";
-
-const baseURL = process.env.VITE_BASE_API;
+// import { VITE_API_BASE_URL } from "virtual:/env"; // Vite 自动提供的虚拟模块来访问环境变量
+const baseURL = "http://localhost:8080";
 
 const instance = axios.create({
   baseURL,
@@ -18,21 +18,21 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
   (res) => {
-    if (res.data.code === 0) {
+    if (res.code === 0) {
       return res;
     }
-    ElMessage({ message: res.data.message || "服务异常", type: "error" });
+    ElMessage({ message: res.msg || "请求成功", type: "success" });
     return Promise.reject(res.data);
   },
   (err) => {
     ElMessage({
-      message: err.response.data.message || "服务异常",
+      message: err.msg || "服务异常",
       type: "error",
     });
     console.log(err);
-    if (err.response?.status === 401) {
-      router.push("/login");
-    }
+    // if (err.response?.status === 401) {
+    //   router.push("/login");
+    // }
     return Promise.reject(err);
   }
 );

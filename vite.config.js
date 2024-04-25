@@ -18,6 +18,7 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()],
     }),
   ],
+  envDir: ".env", // 默认情况下 Vite 会自动读取.env.* 文件
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
@@ -26,9 +27,9 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:3000",
+        target: "http://localhost:8080",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""), // 如果需要重写路径，移除'/api'
+        // rewrite: (path) => path.replace(/^\/api/, ""), // 如果需要重写路径，移除'/api'
       },
     },
   },
